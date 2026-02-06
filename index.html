@@ -94,6 +94,72 @@
 </div>
 </section>
 </main>
-<script src="./script.js"></script>
+<script>
+ console.log("Valentine JS loaded ✅");
+ let noCount = 0;
+ function handleYes(){
+   console.log("YES clicked ✅");
+   const result = document.getElementById("result");
+   const actions = document.getElementById("actions");
+   if (actions) {
+     actions.style.opacity = "0.4";
+     actions.style.pointerEvents = "none";
+   }
+   if (result) {
+     result.innerHTML = `
+<strong>I’m the luckiest — it’s you. ❤️</strong><br/><br/>
+       Valentine’s with you.
+       Dinner, a sweet surprise, and a long Istanbul walk —
+       hand in hand, just us.
+<br/><br/>
+       And after Bali, Netherlands, Belgium, Kos & Rhodes…
+       let’s choose our next destination together. 🌍✨
+     `;
+   }
+   confettiHearts();
+ }
+ function handleNo(){
+   console.log("NO attempt 😄");
+   const btn = document.getElementById("btnNo");
+   const result = document.getElementById("result");
+   if (!btn) return;
+   noCount++;
+   btn.style.transform =
+     `translate(${Math.random()*220-110}px,${Math.random()*140-70}px)`;
+   if(noCount >= 3){
+     btn.style.opacity = "0";
+     btn.style.pointerEvents = "none";
+     if (result) {
+       result.innerHTML = `
+         😄 Nice try.
+         I’ll keep the <strong>Yes</strong> right there for you. 💘
+       `;
+     }
+   }
+ }
+ function confettiHearts() {
+   const count = 26;
+   for (let i = 0; i < count; i++) {
+     const s = document.createElement("span");
+     s.textContent = Math.random() < 0.5 ? "💖" : "💗";
+     s.style.position = "fixed";
+     s.style.left = Math.random() * 100 + "vw";
+     s.style.top = "-20px";
+     s.style.fontSize = 14 + Math.random() * 18 + "px";
+     s.style.zIndex = 9999;
+     s.style.transition = "transform 1.8s ease, opacity 1.8s ease";
+     s.style.opacity = "1";
+     document.body.appendChild(s);
+     const fall = 120 + Math.random() * 140;
+     const drift = (Math.random() * 200) - 100;
+     requestAnimationFrame(() => {
+       s.style.transform =
+         `translate(${drift}px, ${fall}vh) rotate(${Math.random() * 240 - 120}deg)`;
+       s.style.opacity = "0";
+     });
+     setTimeout(() => s.remove(), 1900);
+   }
+ }
+</script>
 </body>
 </html>
