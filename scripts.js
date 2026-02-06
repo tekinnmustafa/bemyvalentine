@@ -1,24 +1,18 @@
 // 1) Scroll reveal
 const revealEls = document.querySelectorAll(".reveal");
-const io = new IntersectionObserver((entries) => {
- for (const e of entries) {
-   if (e.isIntersecting) e.target.classList.add("show");
- }
-}, { threshold: 0.12 });
-revealEls.forEach(el => io.observe(el));
-// 2) Name from URL ?name=Stasya (optional, safe)
-const params = new URLSearchParams(location.search);
-const name = params.get("name");
-if (name) {
- const safe = name.replace(/[<>]/g, "");
- const toNameEl = document.getElementById("toName");
- // If the element exists (older versions), update it
- if (toNameEl) toNameEl.textContent = safe;
- // Also update the first .name in the header if present
- const firstNameEl = document.querySelector(".name");
- if (firstNameEl) firstNameEl.textContent = safe;
-}
-// 3) Music toggle (optional)
+const io = ("IntersectionObserver" in window)
+ ? new IntersectionObserver((entries) => {
+     for (const e of entries) {
+       if (e.isIntersecting) e.target.classList.add("show");
+     }
+   }, { threshold: 0.12 })
+ : null;
+if (io) revealEls.forEach(el => io.observe(el));
+// Fallback: if IntersectionObserver doesn't fire, show everything anyway
+setTimeout(() => {
+ document.querySelectorAll(".reveal").forEach(el => el.classList.add("show"));
+}, 700);
+// 2) Music toggle (optional)
 const audio = document.getElementById("bgm");
 const toggleBtn = document.getElementById("toggleMusic");
 let musicOn = false;
@@ -35,12 +29,11 @@ if (toggleBtn && audio) {
        toggleBtn.textContent = "🎵 Play music";
      }
    } catch {
-     // iOS/Browser may block autoplay until user interacts (we already did)
      toggleBtn.textContent = "🎵 Play music";
    }
  });
 }
-// 4) Yes/No behavior (romantic + playful)
+// 3) Yes/No behavior
 const result = document.getElementById("result");
 const yes = document.getElementById("btnYes");
 const no = document.getElementById("btnNo");
@@ -48,32 +41,51 @@ if (yes && result) {
  yes.addEventListener("click", () => {
    confettiHearts();
    result.innerHTML = `
-<span class="big">You just made my heart very, very happy. ❤️</span>
+<span class="big">I’m the luckiest — it’s you. ❤️</span>
 <span class="small">
-       Then it’s official — Valentine’s with you.
+       Then it’s a Valentine’s date.
 <br />
-       Istanbul can wait… tonight is ours. ✨
+       I’ll plan a beautiful night for us — a sweet surprise, your favorite vibes,
+       and a long Istanbul walk where I get to hold your hand.
+<br /><br />
+       And after Bali, Netherlands, Belgium, Kos & Rhodes…
+       let’s choose our next destination together. 🌍✨
 </span>
    `;
  });
 }
-if (no && result) {
- // No button runs away a little (cute, not rude)
- no.addEventListener("mouseenter", () => {
-   const dx = (Math.random() * 160) - 80;
-   const dy = (Math.random() * 120) - 60;
+if (no && result && no) {
+ let escapes = 0;
+ const moveAway = () => {
+   escapes++;
+   // Move it somewhere random, but keep it near the button area
+   const dx = (Math.random() * 220) - 110;
+   const dy = (Math.random() * 140) - 70;
    no.style.transform = `translate(${dx}px, ${dy}px)`;
+   // After a few attempts, fade it out (playful "vanish")
+   if (escapes >= 4) {
+     no.style.opacity = "0";
+     no.style.pointerEvents = "none";
+     result.innerHTML = `
+<span class="big">Nice try 😄</span>
+<span class="small">I’m keeping the “Yes” right there for you. 💘</span>
+     `;
+   }
+ };
+ // Run away when trying to hover OR click
+ no.addEventListener("mouseenter", moveAway);
+ no.addEventListener("mousedown", (e) => {
+   e.preventDefault();
+   moveAway();
  });
- no.addEventListener("click", () => {
-   result.innerHTML = `
-<span class="big">Okay… 🙈</span>
-<span class="small">But I’m still choosing you — every day.</span>
-   `;
+ no.addEventListener("click", (e) => {
+   e.preventDefault();
+   moveAway();
  });
 }
 // Tiny confetti hearts (no library)
 function confettiHearts() {
- const count = 26;
+ const count = 28;
  for (let i = 0; i < count; i++) {
    const s = document.createElement("span");
    s.textContent = Math.random() < 0.5 ? "💖" : "💗";
@@ -94,7 +106,3 @@ function confettiHearts() {
    setTimeout(() => s.remove(), 1900);
  }
 }
-// Fallback: if IntersectionObserver doesn't fire, show everything anyway
-setTimeout(() => {
- document.querySelectorAll(".reveal").forEach(el => el.classList.add("show"));
-}, 700);

@@ -8,6 +8,7 @@
  --pink: #ff4d7d;
  --rose: #ffb3c6;
  --shadow: 0 24px 80px rgba(0,0,0,.45);
+ --glow: 0 0 40px rgba(255,77,125,.18), 0 0 90px rgba(120,160,255,.12);
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -20,6 +21,24 @@ body{
              linear-gradient(180deg, var(--bg1), var(--bg2));
  overflow-x:hidden;
 }
+/* premium drifting glow */
+body::before{
+ content:"";
+ position: fixed;
+ inset:-20%;
+ background:
+   radial-gradient(900px 600px at 20% 20%, rgba(255,77,125,.18), transparent 60%),
+   radial-gradient(900px 600px at 70% 10%, rgba(120,160,255,.14), transparent 60%),
+   radial-gradient(900px 600px at 50% 80%, rgba(255,179,198,.10), transparent 60%);
+ filter: blur(18px);
+ opacity:.8;
+ pointer-events:none;
+ animation: drift 14s ease-in-out infinite alternate;
+}
+@keyframes drift{
+ from{transform: translate(-10px,-10px) scale(1.02)}
+ to{transform: translate(10px,10px) scale(1.06)}
+}
 .bg-hearts{
  position:fixed; inset:0;
  background:
@@ -30,14 +49,14 @@ body{
  filter: blur(0.2px);
  opacity:.9;
  pointer-events:none;
- animation: floatBg 12s ease-in-out infinite alternate;
+ animation: floatBg 10s ease-in-out infinite alternate;
 }
 @keyframes floatBg{
  from{transform:translateY(0)}
  to{transform:translateY(-18px)}
 }
 .hero{
- min-height: 92vh;
+ min-height: 82vh;
  display:grid;
  place-items:center;
  padding: 64px 18px 28px;
@@ -48,7 +67,7 @@ body{
  border: 1px solid var(--stroke);
  border-radius: 28px;
  padding: 36px 22px;
- box-shadow: var(--shadow);
+ box-shadow: var(--shadow), var(--glow);
  backdrop-filter: blur(14px);
 }
 .kicker{
@@ -72,7 +91,7 @@ h1{
 .soft{font-weight:700}
 .sub{
  margin: 0;
- max-width: 54ch;
+ max-width: 62ch;
  color: var(--muted);
  font-size: 16px;
  line-height: 1.6;
@@ -87,12 +106,49 @@ h1{
 .hint{font-size:12px;color:var(--muted)}
 .wrap{
  width:min(900px, 100%);
- margin: -60 px auto 0;
+ margin: 0 auto;
  padding: 18px 18px 92px;
 }
+/* Scroll hint */
+.scroll-hint{
+ margin-top: 16px;
+ text-align:center;
+ font-size: 12px;
+ color: rgba(255,255,255,.70);
+ letter-spacing:.12em;
+ text-transform: uppercase;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ gap:10px;
+}
+.scroll-hint .mouse{
+ width: 18px;
+ height: 28px;
+ border-radius: 999px;
+ border: 1px solid rgba(255,255,255,.35);
+ position: relative;
+}
+.scroll-hint .mouse::after{
+ content:"";
+ position:absolute;
+ left:50%;
+ top:6px;
+ width: 3px;
+ height: 6px;
+ border-radius: 999px;
+ transform: translateX(-50%);
+ background: rgba(255,255,255,.6);
+ animation: wheel 1.2s ease-in-out infinite;
+}
+@keyframes wheel{
+ 0%{opacity:.2; transform:translate(-50%,0)}
+ 50%{opacity:1; transform:translate(-50%,6px)}
+ 100%{opacity:.2; transform:translate(-50%,0)}
+}
 .timeline h2{
- margin: 22px 0 18px;
- font-size: 20px;
+ margin: 18px 0 18px;
+ font-size: 22px;
  color: rgba(255,255,255,.9);
 }
 .card{
@@ -102,9 +158,9 @@ h1{
  gap: 16px;
  padding: 18px 18px;
  border: 1px solid var(--stroke);
- border-radius: 18px;
- background: rgba(255,255,255,.06);
- box-shadow: 0 16px 50px rgba(0,0,0,.28);
+ border-radius: 20px;
+ background: rgba(255,255,255,.07);
+ box-shadow: 0 20px 70px rgba(0,0,0,.34);
  margin: 14px 0;
  overflow:hidden;
 }
@@ -134,12 +190,27 @@ h1{
 }
 .card h3{
  margin:0 0 8px;
- font-size: 18px;
+ font-size: 19px;
 }
 .text{
  margin:0;
  color: rgba(255,255,255,.78);
  line-height: 1.65;
+}
+/* Trips chips */
+.chips{
+ margin-top: 12px;
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+}
+.chip{
+ border: 1px solid rgba(255,255,255,.18);
+ background: rgba(0,0,0,.12);
+ padding: 8px 12px;
+ border-radius: 999px;
+ font-size: 13px;
+ color: rgba(255,255,255,.85);
 }
 .final{
  margin-top: 34px;
@@ -152,7 +223,7 @@ h1{
  border-radius: 22px;
  border: 1px solid var(--stroke);
  background: rgba(255,255,255,.08);
- box-shadow: var(--shadow);
+ box-shadow: var(--shadow), var(--glow);
  text-align:center;
 }
 .final-kicker{
@@ -187,7 +258,8 @@ h1{
  cursor:pointer;
  font-weight:700;
  letter-spacing:.02em;
- transition: transform .15s ease, background .15s ease, border-color .15s ease;
+ transition: transform .15s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+ user-select:none;
 }
 .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10)}
 .btn:active{transform: translateY(0px) scale(.99)}
@@ -196,14 +268,14 @@ h1{
  background: linear-gradient(90deg, rgba(255,179,198,.18), rgba(255,77,125,.18));
 }
 .btn.no{
- opacity:.9;
+ opacity:.92;
 }
 .btn.ghost{
  background: rgba(0,0,0,.12);
 }
 .result{
  margin-top: 16px;
- min-height: 48px;
+ min-height: 58px;
  font-size: 16px;
  color: rgba(255,255,255,.92);
 }
@@ -213,9 +285,10 @@ h1{
 }
 .result .small{
  display:block;
- margin-top: 6px;
+ margin-top: 8px;
  font-size: 13px;
  color: var(--muted);
+ line-height: 1.55;
 }
 /* reveal animation */
 .reveal{
