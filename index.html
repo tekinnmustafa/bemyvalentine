@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Valentine’ım olur musun?</title>
+<link rel="stylesheet" href="./styles.css" />
+<meta name="description" content="Küçük bir hikâye, büyük bir soru." />
+</head>
+<body>
+<div class="bg-hearts" aria-hidden="true"></div>
+<header class="hero">
+<div class="glass">
+<p class="kicker">Sadece sana özel küçük bir sayfa</p>
+<h1>
+<span class="name" id="toName">Stasya</span>,
+<br />
+<span class="soft">bir hikâyemiz var…</span>
+</h1>
+<p class="sub">
+       Bazı anlar vardır, kalbin “bunu sakla” der.
+<br />Ben de sakladım.
+</p>
+<div class="controls">
+<button id="toggleMusic" class="btn ghost" type="button">🎵 Müziği aç</button>
+<span class="hint">İstersen sessiz de kullanabilirsin</span>
+</div>
+</div>
+</header>
+<main class="wrap">
+<section class="timeline">
+<h2>Bizim küçük zaman çizgimiz</h2>
+<article class="card reveal">
+<div class="dot"></div>
+<div class="content">
+<p class="date">İlk an</p>
+<h3>Tanıştığımız gün</h3>
+<p class="text">
+           O gün sıradan başlamıştı…
+           sonra bir anda “farklı” oldu.
+</p>
+</div>
+</article>
+<article class="card reveal">
+<div class="dot"></div>
+<div class="content">
+<p class="date">Küçük şeyler</p>
+<h3>En çok sevdiğim anlar</h3>
+<p class="text">
+           Gülüşün, bakışın, konuşurken araya giren o tatlı duraksamalar…
+           Bazen “mutluluk” çok basit görünüyor.
+</p>
+</div>
+</article>
+<article class="card reveal">
+<div class="dot"></div>
+<div class="content">
+<p class="date">Güven</p>
+<h3>Yanında “ben” olabilmek</h3>
+<p class="text">
+           Yanında kendim olmak kolay.
+           Bu bile başlı başına bir şans.
+</p>
+</div>
+</article>
+<article class="card reveal">
+<div class="dot"></div>
+<div class="content">
+<p class="date">Bugün</p>
+<h3>İçimde net bir cümle</h3>
+<p class="text">
+           Seni düşünmek,
+           günün en güzel kısmı gibi.
+</p>
+</div>
+</article>
+</section>
+<section class="final reveal" id="final">
+<div class="final-card">
+<p class="final-kicker">Ve şimdi…</p>
+<h2>Valentine’ım olur musun? 💘</h2>
+<p class="final-text">
+         Cevabın ne olursa olsun, bu sayfa “iyi ki” dediğim bir şey.
+</p>
+<div class="actions">
+<button class="btn yes" id="btnYes" type="button">❤️ Evet</button>
+<button class="btn no" id="btnNo" type="button">🙈 Hayır</button>
+</div>
+<div class="result" id="result" aria-live="polite"></div>
+</div>
+</section>
+</main>
+<!-- İsteğe bağlı müzik: aynı klasöre music.mp3 koy -->
+<audio id="bgm" loop preload="none">
+<source src="./music.mp3" type="audio/mpeg" />
+</audio>
+<script src="./script.js"></script>
+</body>
+</html>
