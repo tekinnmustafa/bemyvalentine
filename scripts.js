@@ -94,3 +94,7 @@ function confettiHearts() {
    setTimeout(() => s.remove(), 1900);
  }
 }
+// Fallback: if IntersectionObserver doesn't fire, show everything anyway
+setTimeout(() => {
+ document.querySelectorAll(".reveal").forEach(el => el.classList.add("show"));
+}, 700);
