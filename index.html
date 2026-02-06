@@ -5,30 +5,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Our Story So Far — Mustafa & Stasya</title>
 <link rel="stylesheet" href="./styles.css" />
-<meta name="description" content="Our story so far — and my favorite question." />
 </head>
 <body>
-<div class="bg-hearts" aria-hidden="true"></div>
+<div class="bg-hearts"></div>
 <header class="hero">
 <div class="glass">
 <p class="kicker">A small page made for one person</p>
 <h1>
-<span class="name">Stasya</span>,
-<br />
+<span class="name">Stasya</span>,<br/>
 <span class="soft">this is our story so far…</span>
 </h1>
 <p class="sub">
-       We live in Istanbul — and somehow, you’ve become my favorite part of it.
-<br />
-       Not because life is perfect, but because it feels lighter when it’s <em>us</em>.
+     We live in Istanbul — and somehow, you’ve become my favorite part of it.
+<br/>Everything feels lighter when it’s <em>us</em>.
 </p>
-<div class="controls">
-<button id="toggleMusic" class="btn ghost" type="button">🎵 Play music</button>
-<span class="hint">Optional — works without sound</span>
-</div>
 <div class="scroll-hint">
 <span>scroll</span>
-<span class="mouse" aria-hidden="true"></span>
+<span class="mouse"></span>
 <span>to read our story</span>
 </div>
 </div>
@@ -36,97 +29,71 @@
 <main class="wrap">
 <section class="timeline">
 <h2>Our Story So Far</h2>
-<article class="card reveal">
+<article class="card">
 <div class="dot"></div>
 <div class="content">
-<p class="date">Chapter 1</p>
 <h3>When “us” started</h3>
-<p class="text">
-           Somewhere between the first conversations and the first smiles,
-           you became the part of my day I looked forward to the most.
+<p>
+         Somewhere between the first conversations and the first smiles,
+         you became the part of my day I looked forward to the most.
 </p>
 </div>
 </article>
-<article class="card reveal">
+<article class="card">
 <div class="dot"></div>
 <div class="content">
-<p class="date">Chapter 2</p>
 <h3>Home, in the simplest way</h3>
-<p class="text">
-           The best part of living together is this:
-           the everyday becomes special — because it’s with you.
-           Mornings, groceries, quiet evenings, inside jokes…
-           you are my favorite “normal.”
+<p>
+         Living together turned ordinary days into something warm.
+         Mornings, groceries, quiet nights — you are my favorite normal.
 </p>
 </div>
 </article>
-<article class="card reveal">
+<article class="card">
 <div class="dot"></div>
 <div class="content">
-<p class="date">Chapter 3</p>
 <h3>Istanbul feels softer with you</h3>
-<p class="text">
-           The city is loud, fast, and sometimes exhausting —
-           but with you, even the busiest day ends with peace.
+<p>
+         The city is loud and fast — but with you,
+         every day ends in calm.
 </p>
 </div>
 </article>
-<article class="card reveal">
+<article class="card">
 <div class="dot"></div>
 <div class="content">
-<p class="date">Chapter 4</p>
-<h3>Our passport pages (and favorite memories)</h3>
-<p class="text">
-           We collected pieces of the world together —
-           different skies, different streets… same feeling:
-           wherever we go, I’m happiest when I’m next to you.
+<h3>Our passport pages</h3>
+<p>
+         Bali, Netherlands, Belgium, Kos, Rhodes.
+         Different places, same feeling —
+         wherever we go, I choose you.
 </p>
-<div class="chips">
-<span class="chip">🌴 Bali</span>
-<span class="chip">🇳🇱 Netherlands</span>
-<span class="chip">🇧🇪 Belgium</span>
-<span class="chip">🇬🇷 Kos</span>
-<span class="chip">🏝️ Rhodes</span>
-</div>
 </div>
 </article>
-<article class="card reveal">
+<article class="card">
 <div class="dot"></div>
 <div class="content">
-<p class="date">Today</p>
-<h3>My favorite kind of future</h3>
-<p class="text">
-           I want a future that keeps choosing us —
-           more laughter, more trips, more “we did it” moments,
-           and a home that always feels like you.
-           You’re not just part of my life… you’re my favorite direction.
+<h3>My favorite future</h3>
+<p>
+         More laughter. More trips. More life together.
+         You are not just part of my life —
+         you are my direction.
 </p>
 </div>
 </article>
 </section>
-<section class="final reveal" id="final">
+<section class="final">
 <div class="final-card">
-<p class="final-kicker">So…</p>
 <h2>Will you be my Valentine? 💘</h2>
-<p class="final-text">
-         Not because we need a label — but because I want to celebrate <em>you</em>,
-         and everything we are.
-</p>
 <div class="actions" id="actions">
-<button class="btn yes" id="btnYes" type="button">❤️ Yes</button>
-<button class="btn no" id="btnNo" type="button">🙈 No</button>
+<button class="btn yes" onclick="handleYes()">❤️ Yes</button>
+<button class="btn no" id="btnNo" onclick="handleNo()">🙈 No</button>
 </div>
-<div class="result" id="result" aria-live="polite"></div>
-<p class="hint" style="margin-top:14px;">
-         — Mustafa
-</p>
+<div id="result" class="result"></div>
+<p class="signature">— Mustafa</p>
 </div>
 </section>
 </main>
-<!-- Optional music: put music.mp3 in the same folder -->
-<audio id="bgm" loop preload="none">
-<source src="./music.mp3" type="audio/mpeg" />
-</audio>
 <script src="./script.js"></script>
 </body>
 </html>
