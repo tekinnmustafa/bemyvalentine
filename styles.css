@@ -290,13 +290,20 @@ h1{
  color: var(--muted);
  line-height: 1.55;
 }
-/* reveal animation */
+/* Reveal animation (SAFE):
+  Default: visible (so content never disappears)
+  If JS is running: start hidden, then reveal with .show
+*/
 .reveal{
+ opacity: 1;
+ transform: none;
+}
+.js .reveal{
  opacity: 0;
  transform: translateY(18px);
  transition: opacity .6s ease, transform .6s ease;
 }
-.reveal.show{
+.js .reveal.show{
  opacity: 1;
  transform: translateY(0);
 }

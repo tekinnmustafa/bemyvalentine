@@ -1,17 +1,21 @@
-// 1) Scroll reveal
+// Mark that JS is running (enables reveal animation safely)
+document.documentElement.classList.add("js");
+// 1) Scroll reveal (with fallback safety)
 const revealEls = document.querySelectorAll(".reveal");
-const io = ("IntersectionObserver" in window)
- ? new IntersectionObserver((entries) => {
-     for (const e of entries) {
-       if (e.isIntersecting) e.target.classList.add("show");
-     }
-   }, { threshold: 0.12 })
- : null;
-if (io) revealEls.forEach(el => io.observe(el));
-// Fallback: if IntersectionObserver doesn't fire, show everything anyway
-setTimeout(() => {
- document.querySelectorAll(".reveal").forEach(el => el.classList.add("show"));
-}, 700);
+if ("IntersectionObserver" in window) {
+ const io = new IntersectionObserver((entries) => {
+   for (const e of entries) {
+     if (e.isIntersecting) e.target.classList.add("show");
+   }
+ }, { threshold: 0.12 });
+ revealEls.forEach(el => io.observe(el));
+}
+// Fallback: always show everything after load (prevents invisible content)
+window.addEventListener("load", () => {
+ setTimeout(() => {
+   document.querySelectorAll(".reveal").forEach(el => el.classList.add("show"));
+ }, 200);
+});
 // 2) Music toggle (optional)
 const audio = document.getElementById("bgm");
 const toggleBtn = document.getElementById("toggleMusic");
@@ -37,9 +41,15 @@ if (toggleBtn && audio) {
 const result = document.getElementById("result");
 const yes = document.getElementById("btnYes");
 const no = document.getElementById("btnNo");
+const actions = document.getElementById("actions");
 if (yes && result) {
  yes.addEventListener("click", () => {
    confettiHearts();
+   // Optional: make it cleaner by disabling buttons after "Yes"
+   if (actions) {
+     actions.style.opacity = "0.45";
+     actions.style.pointerEvents = "none";
+   }
    result.innerHTML = `
 <span class="big">I’m the luckiest — it’s you. ❤️</span>
 <span class="small">
@@ -54,15 +64,13 @@ if (yes && result) {
    `;
  });
 }
-if (no && result && no) {
+if (no && result) {
  let escapes = 0;
  const moveAway = () => {
    escapes++;
-   // Move it somewhere random, but keep it near the button area
    const dx = (Math.random() * 220) - 110;
    const dy = (Math.random() * 140) - 70;
    no.style.transform = `translate(${dx}px, ${dy}px)`;
-   // After a few attempts, fade it out (playful "vanish")
    if (escapes >= 4) {
      no.style.opacity = "0";
      no.style.pointerEvents = "none";
@@ -72,16 +80,11 @@ if (no && result && no) {
      `;
    }
  };
- // Run away when trying to hover OR click
+ // Run away on hover + click attempts
  no.addEventListener("mouseenter", moveAway);
- no.addEventListener("mousedown", (e) => {
-   e.preventDefault();
-   moveAway();
- });
- no.addEventListener("click", (e) => {
-   e.preventDefault();
-   moveAway();
- });
+ no.addEventListener("touchstart", (e) => { e.preventDefault(); moveAway(); }, { passive: false });
+ no.addEventListener("mousedown", (e) => { e.preventDefault(); moveAway(); });
+ no.addEventListener("click", (e) => { e.preventDefault(); moveAway(); });
 }
 // Tiny confetti hearts (no library)
 function confettiHearts() {
@@ -106,6 +109,3 @@ function confettiHearts() {
    setTimeout(() => s.remove(), 1900);
  }
 }
-setTimeout(() => {
- document.querySelectorAll(".reveal").forEach(el => el.classList.add("show"));
-}, 700);
