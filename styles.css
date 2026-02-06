@@ -87,7 +87,7 @@ h1{
 .hint{font-size:12px;color:var(--muted)}
 .wrap{
  width:min(900px, 100%);
- margin: 0 auto;
+ margin: -60 px auto 0;
  padding: 18px 18px 92px;
 }
 .timeline h2{
