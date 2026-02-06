@@ -106,3 +106,6 @@ function confettiHearts() {
    setTimeout(() => s.remove(), 1900);
  }
 }
+setTimeout(() => {
+ document.querySelectorAll(".reveal").forEach(el => el.classList.add("show"));
+}, 700);
