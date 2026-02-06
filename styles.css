@@ -5,12 +5,14 @@ body{
  color:#fff;
 }
 .bg-hearts{
- position:fixed;
- inset:0;
- background:
-   radial-gradient(circle at 20% 20%,rgba(255,77,125,.15),transparent 40%),
-   radial-gradient(circle at 80% 60%,rgba(255,179,198,.12),transparent 40%);
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,77,125,.15),transparent 40%),
+    radial-gradient(circle at 80% 60%,rgba(255,179,198,.12),transparent 40%);
+  pointer-events: none; /* 🔥 KRİTİK SATIR */
 }
+ 
 .hero{
  min-height:85vh;
  display:flex;
