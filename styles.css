@@ -227,3 +227,8 @@ h1{
  opacity: 1;
  transform: translateY(0);
 }
+/* DEBUG/FIX: Always show timeline cards */
+.reveal{
+ opacity: 1 !important;
+ transform: none !important;
+}
