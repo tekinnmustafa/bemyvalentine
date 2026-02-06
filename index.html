@@ -1,96 +1,117 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Valentine’ım olur musun?</title>
+<title>Our Story So Far — Mustafa & Stasya</title>
 <link rel="stylesheet" href="./styles.css" />
-<meta name="description" content="Küçük bir hikâye, büyük bir soru." />
+<meta name="description" content="Our story so far — and my favorite question." />
 </head>
 <body>
 <div class="bg-hearts" aria-hidden="true"></div>
 <header class="hero">
 <div class="glass">
-<p class="kicker">Sadece sana özel küçük bir sayfa</p>
+<p class="kicker">A small page made for one person</p>
 <h1>
-<span class="name" id="toName">Stasya</span>,
+<span class="name">Stasya</span>,
 <br />
-<span class="soft">bir hikâyemiz var…</span>
+<span class="soft">this is our story so far…</span>
 </h1>
 <p class="sub">
-       Bazı anlar vardır, kalbin “bunu sakla” der.
-<br />Ben de sakladım.
+       We live in Istanbul — and somehow, you’ve become my favorite part of it.
+<br />
+       Not because life is perfect, but because it feels lighter when it’s <em>us</em>.
 </p>
 <div class="controls">
-<button id="toggleMusic" class="btn ghost" type="button">🎵 Müziği aç</button>
-<span class="hint">İstersen sessiz de kullanabilirsin</span>
+<button id="toggleMusic" class="btn ghost" type="button">🎵 Play music</button>
+<span class="hint">Optional — works without sound</span>
 </div>
 </div>
 </header>
 <main class="wrap">
 <section class="timeline">
-<h2>Bizim küçük zaman çizgimiz</h2>
+<h2>Our Story So Far</h2>
 <article class="card reveal">
 <div class="dot"></div>
 <div class="content">
-<p class="date">İlk an</p>
-<h3>Tanıştığımız gün</h3>
+<p class="date">Chapter 1</p>
+<h3>When “us” started</h3>
 <p class="text">
-           O gün sıradan başlamıştı…
-           sonra bir anda “farklı” oldu.
+           Somewhere between the first conversations and the first smiles,
+           you became the part of my day I looked forward to the most.
 </p>
 </div>
 </article>
 <article class="card reveal">
 <div class="dot"></div>
 <div class="content">
-<p class="date">Küçük şeyler</p>
-<h3>En çok sevdiğim anlar</h3>
+<p class="date">Chapter 2</p>
+<h3>Home, in the simplest way</h3>
 <p class="text">
-           Gülüşün, bakışın, konuşurken araya giren o tatlı duraksamalar…
-           Bazen “mutluluk” çok basit görünüyor.
+           We’re not married — but we live together, and we’ve built something real.
+           Love is also mornings, groceries, quiet evenings, and choosing each other on ordinary days.
 </p>
 </div>
 </article>
 <article class="card reveal">
 <div class="dot"></div>
 <div class="content">
-<p class="date">Güven</p>
-<h3>Yanında “ben” olabilmek</h3>
+<p class="date">Chapter 3</p>
+<h3>Istanbul feels softer with you</h3>
 <p class="text">
-           Yanında kendim olmak kolay.
-           Bu bile başlı başına bir şans.
+           The city is loud, fast, and sometimes exhausting —
+           but with you, even the busiest day ends with peace.
 </p>
 </div>
 </article>
 <article class="card reveal">
 <div class="dot"></div>
 <div class="content">
-<p class="date">Bugün</p>
-<h3>İçimde net bir cümle</h3>
+<p class="date">Chapter 4</p>
+<h3>Our passport pages (and favorite memories)</h3>
 <p class="text">
-           Seni düşünmek,
-           günün en güzel kısmı gibi.
+           We collected pieces of the world together —
+<strong>Bali</strong>, <strong>Holland</strong>, <strong>Belgium</strong>,
+<strong>Kos</strong>, and <strong>Rhodes</strong>.
+<br /><br />
+           Different skies, different streets… same feeling:
+           wherever we go, I’m happiest when I’m next to you.
+</p>
+</div>
+</article>
+<article class="card reveal">
+<div class="dot"></div>
+<div class="content">
+<p class="date">Today</p>
+<h3>A gentle promise</h3>
+<p class="text">
+           I don’t need to rush the future.
+           I just want it to keep including you —
+           one step at a time, hand in hand.
 </p>
 </div>
 </article>
 </section>
 <section class="final reveal" id="final">
 <div class="final-card">
-<p class="final-kicker">Ve şimdi…</p>
-<h2>Valentine’ım olur musun? 💘</h2>
+<p class="final-kicker">So…</p>
+<h2>Will you be my Valentine? 💘</h2>
 <p class="final-text">
-         Cevabın ne olursa olsun, bu sayfa “iyi ki” dediğim bir şey.
+         Not because we need a label — but because I want to celebrate <em>you</em>,
+         and everything we are.
 </p>
 <div class="actions">
-<button class="btn yes" id="btnYes" type="button">❤️ Evet</button>
-<button class="btn no" id="btnNo" type="button">🙈 Hayır</button>
+<button class="btn yes" id="btnYes" type="button">❤️ Yes</button>
+<button class="btn no" id="btnNo" type="button">🙈 No</button>
 </div>
 <div class="result" id="result" aria-live="polite"></div>
+<p class="hint" style="margin-top:14px;">
+         — Mustafa
+</p>
 </div>
 </section>
 </main>
-<!-- İsteğe bağlı müzik: aynı klasöre music.mp3 koy -->
+<!-- Optional music: put music.mp3 in the same folder -->
 <audio id="bgm" loop preload="none">
 <source src="./music.mp3" type="audio/mpeg" />
 </audio>
