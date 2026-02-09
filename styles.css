@@ -124,16 +124,27 @@ h1{
  opacity:.7;
  margin-top:12px;
 }
+/* Fotoğrafı timeline’dan daha geniş göster */
+.story-photo-wrap{
+ width: 100vw;                 /* tam ekran genişliği */
+ max-width: 1100px;            /* desktop’ta kontrol */
+ margin: 24px auto 36px;       /* ortala */
+ padding: 0 12px;              /* mobil nefes payı */
+}
+/* Fotoğrafın kendisi */
 .story-photo{
  width: 100%;
- max-height: 420px;
- object-fit: contain;     /* ❗ kırpmaz */
- background: rgba(0,0,0,.25); /* boşluk olursa şık dursun */
- border-radius: 22px;
- margin: 18px 0 26px;
+ height: auto;
+ max-height: 520px;
+ object-fit: contain;          /* yüzler ASLA kesilmez */
+ border-radius: 26px;
  display: block;
- box-shadow: 0 20px 60px rgba(0,0,0,.45);
+ background: rgba(0,0,0,.25);  /* boşluk olursa şık */
+ box-shadow: 0 30px 80px rgba(0,0,0,.5);
 }
+/* Mobilde biraz küçült */
 @media (max-width: 600px){
- .story-photo{ height: 240px; }
+ .story-photo{
+   max-height: 380px;
+ }
 }
