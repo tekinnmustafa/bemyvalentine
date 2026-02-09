@@ -141,8 +141,16 @@ h1{
  object-fit: contain !important;
 }
 /* Mobilde biraz küçült */
+/* Mobile: remove side gaps for story photo */
 @media (max-width: 600px){
+ .story-photo-wrap{
+   width: 100vw;
+   margin-left: 50%;
+   transform: translateX(-50%);
+   padding: 0;              /* yan boşlukları KALDIR */
+ }
  .story-photo{
-   max-height: 380px;
+   border-radius: 18px;     /* mobilde biraz daha yumuşak */
+   max-height: none;        /* doğal boy */
  }
 }
