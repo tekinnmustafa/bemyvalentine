@@ -126,9 +126,14 @@ h1{
 }
 .story-photo{
  width: 100%;
- max-height: 420px;
+ height: 320px;
  object-fit: cover;
+ object-position: center 25%;
  border-radius: 22px;
- margin: 20px 0 28px;
+ margin: 18px 0 26px;
+ display: block;
  box-shadow: 0 20px 60px rgba(0,0,0,.45);
+}
+@media (max-width: 600px){
+ .story-photo{ height: 240px; }
 }
