@@ -143,14 +143,23 @@ h1{
 /* Mobilde biraz küçült */
 /* Mobile: remove side gaps for story photo */
 @media (max-width: 600px){
+ /* wrapper tam ekran ama içerik ortalı */
  .story-photo-wrap{
-   width: 100vw;
-   margin-left: 50%;
-   transform: translateX(-50%);
-   padding: 0;              /* yan boşlukları KALDIR */
+   width: 100%;
+   margin: 18px 0 26px;
+   transform: none;
+   margin-left: 0;
+   padding: 0 16px;          /* çok az nefes payı (tamamen 0 da yapabiliriz) */
+   display: flex;
+   justify-content: center;  /* ortala */
  }
+ /* foto mobilde mantıklı genişlik */
  .story-photo{
-   border-radius: 18px;     /* mobilde biraz daha yumuşak */
-   max-height: none;        /* doğal boy */
+   width: 100%;
+   max-width: 420px;         /* portrait için ideal */
+   height: auto;
+   max-height: 70vh;         /* ekrana taşmasın */
+   object-fit: contain;
+   border-radius: 22px;
  }
 }
